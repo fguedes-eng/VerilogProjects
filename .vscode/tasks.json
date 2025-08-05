@@ -1,0 +1,55 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Clean Verilog Project",
+			"command": ".\\script.bat",
+			"type": "shell",
+			"args": ["${fileDirnameBasename}"],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"presentation": {
+				"reveal": "always"
+			},
+		},
+		{
+			"label": "Compile",
+			"type": "shell",
+			"command": "iverilog",
+			"args": [
+				"-o",
+				"${fileDirnameBasename}_tb",
+				"-c",
+				"logic_filelist.txt",
+				"-g2012"
+			],
+			"dependsOn": [
+				"Clean Verilog Project"
+			],
+			"dependsOrder": "sequence"
+		},
+		{
+			"label": "Compile Verilog Project",
+			"type": "shell",
+			"command": "vvp",
+			"args": [
+				"${fileDirnameBasename}_tb",
+			],
+			"dependsOn": [
+				"Compile"
+			],
+			"dependsOrder": "sequence",
+			"group": "build"
+		},
+		{
+			"label": "Open GTK Wave",
+			"type": "shell",
+			"command": "gtkwave",
+			"args": [
+				"dump.vcd",
+			],
+			"group": "build"
+		}
+	]
+}
