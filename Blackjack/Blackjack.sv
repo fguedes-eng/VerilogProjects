@@ -4,6 +4,7 @@ module Blackjack (
   input reset,
   input stay,
   input hit,
+  input [4 - 1:0] random,
   output win,
   output lose,
   output tie,
@@ -119,7 +120,7 @@ always @(posedge clk) begin
     hand_pos <= 0;
     drawing_cards <= 0;
 
-    deck_pos = $urandom_range(0, 51);
+    deck_pos = random;
     next_state = INICIO;
     for (i = 0; i < 52; i = i + 1) begin
       deck[i] = i % 13 + 1;
@@ -138,7 +139,7 @@ always @(posedge clk) begin
 
   if (draw && !stop_dealing) begin
     drawing_cards <= 1;
-    deck_pos <= $urandom_range(0, 51);
+    deck_pos <= random;
     /* Procura uma posição do deck com carta */
     if (deck[deck_pos] !== 0) begin
       /* Pega carta do deck*/
