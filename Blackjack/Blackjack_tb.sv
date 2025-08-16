@@ -6,6 +6,7 @@ module Blackjack_tb ();
   reg reset_tb;
   reg stay_tb;
   reg hit_tb;
+  reg [4 - 1:0] random_tb;
   wire win_tb;
   wire lose_tb;
   wire tie_tb;
@@ -29,7 +30,7 @@ module Blackjack_tb ();
   integer i;
   int unsigned seed;
 
-  Blackjack DUT(clk_tb, reset_tb, stay_tb, hit_tb, win_tb, lose_tb, tie_tb, wfirst_draw_tb, wsoma_terminada_tb, wcurrent_state_tb, whit_reg_tb, wnext_state_tb, wdeck_tb, wdraw_tb, wcard_tb, wdeck_pos_tb, whand_tb, wplayer_or_dealer_tb, wreg_soma_tb, whit_reg_press_tb, wsoma_tb, wsoma_dealer_tb);
+  Blackjack DUT(clk_tb, reset_tb, stay_tb, hit_tb, random_tb, win_tb, lose_tb, tie_tb, wfirst_draw_tb, wsoma_terminada_tb, wcurrent_state_tb, whit_reg_tb, wnext_state_tb, wdeck_tb, wdraw_tb, wcard_tb, wdeck_pos_tb, whand_tb, wplayer_or_dealer_tb, wreg_soma_tb, whit_reg_press_tb, wsoma_tb, wsoma_dealer_tb);
   
   initial begin
     clk_tb = 0;
