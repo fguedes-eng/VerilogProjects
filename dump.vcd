@@ -1,5 +1,5 @@
 $date
-	Tue Aug 05 01:57:49 2025
+	Wed Aug 06 19:37:55 2025
 $end
 $version
 	Icarus Verilog
@@ -51,51 +51,98 @@ $var wire 1 ! wsoma_terminada $end
 $var wire 7 < wdeck_pos [6:0] $end
 $var wire 6 = soma_dealer [5:0] $end
 $var wire 6 > soma [5:0] $end
-$var reg 4 ? card [3:0] $end
-$var reg 3 @ current_state [2:0] $end
-$var reg 2 A draw [1:0] $end
-$var reg 1 B drawing_cards $end
-$var reg 1 C first_cards_completed $end
-$var reg 1 D first_draw $end
-$var reg 1 E hit_reg $end
-$var reg 1 F hit_reg_press $end
-$var reg 1 G lose_reg $end
-$var reg 3 H next_state [2:0] $end
-$var reg 1 I player_or_dealer $end
-$var reg 1 J soma_terminada $end
-$var reg 1 K stop_dealing $end
-$var reg 1 L tie_reg $end
-$var reg 4 M valor [3:0] $end
-$var reg 1 N win_reg $end
-$var integer 32 O deck_pos [31:0] $end
-$var integer 32 P hand_pos [31:0] $end
-$var integer 32 Q i [31:0] $end
-$var integer 32 R out_hand_pos [31:0] $end
+$var parameter 4 ? AS $end
+$var parameter 32 @ CARD $end
+$var parameter 4 A CINCO $end
+$var parameter 4 B DAMA $end
+$var parameter 32 C DEALER $end
+$var parameter 3 D DEALER_CARDS $end
+$var parameter 4 E DEZ $end
+$var parameter 4 F DOIS $end
+$var parameter 3 G FINALIZACAO $end
+$var parameter 3 H FIRST_CARDS $end
+$var parameter 3 I HIT_CARD $end
+$var parameter 3 J INICIO $end
+$var parameter 32 K MAX_SUM $end
+$var parameter 4 L NOVE $end
+$var parameter 4 M OITO $end
+$var parameter 32 N PLAYER $end
+$var parameter 4 O QUATRO $end
+$var parameter 4 P REI $end
+$var parameter 4 Q SEIS $end
+$var parameter 4 R SETE $end
+$var parameter 4 S TRES $end
+$var parameter 4 T VALETE $end
+$var reg 4 U card [3:0] $end
+$var reg 3 V current_state [2:0] $end
+$var reg 2 W draw [1:0] $end
+$var reg 1 X drawing_cards $end
+$var reg 1 Y first_cards_completed $end
+$var reg 1 Z first_draw $end
+$var reg 1 [ hit_reg $end
+$var reg 1 \ hit_reg_press $end
+$var reg 1 ] lose_reg $end
+$var reg 3 ^ next_state [2:0] $end
+$var reg 1 _ player_or_dealer $end
+$var reg 1 ` soma_terminada $end
+$var reg 1 a stop_dealing $end
+$var reg 1 b tie_reg $end
+$var reg 4 c valor [3:0] $end
+$var reg 1 d win_reg $end
+$var integer 32 e deck_pos [31:0] $end
+$var integer 32 f hand_pos [31:0] $end
+$var integer 32 g i [31:0] $end
+$var integer 32 h out_hand_pos [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1011 T
+b11 S
+b111 R
+b110 Q
+b1101 P
+b100 O
+b0 N
+b1000 M
+b1001 L
+b110 K
+b0 J
+b10 I
+b1 H
+b100 G
+b10 F
+b1010 E
+b11 D
+b1 C
+b1100 B
+b101 A
+b100 @
+b1 ?
+$end
 #0
 $dumpvars
-bx R
-bx Q
-bx P
-bx O
-xN
-bx M
-xL
-xK
-xJ
-xI
-bx H
-xG
-xF
-xE
-xD
-xC
-xB
-bx A
-bx @
-bx ?
+bx h
+bx g
+bx f
+bx e
+xd
+bx c
+xb
+xa
+x`
+x_
+bx ^
+x]
+x\
+x[
+xZ
+xY
+xX
+bx W
+bx V
+bx U
 bx >
 bx =
 bx <
@@ -130,35 +177,35 @@ $end
 #3
 b0 %
 b0 9
-b0 H
+b0 ^
 1(
-1F
+1\
 0'
-0E
+0[
 10
 #6
 00
 #9
-0K
+0a
 b0 ,
 b0 7
-b0 @
+b0 V
 10
 #10
 12
 #12
 00
 #15
-0B
-b0 P
+0X
+b0 f
 0!
-0J
+0`
 1)
-1D
+1Z
 b10100 +
 b10100 <
-b110100 Q
-b10100 O
+b110100 g
+b10100 e
 10
 #18
 00
@@ -177,11 +224,11 @@ b110100 4
 #33
 b1 %
 b1 9
-b1 H
+b1 ^
 0(
-0F
+0\
 1'
-1E
+1[
 10
 #36
 00
@@ -189,25 +236,25 @@ b1 H
 b0 "
 b0 :
 b0 >
-b0 M
-b1011 R
-b1100 Q
+b0 c
+b1011 h
+b1100 g
 0$
-0I
+0_
 b1 ,
 b1 7
-b1 @
+b1 V
 0'
-0E
+0[
 10
 #42
 00
 #45
 0)
-0D
+0Z
 b10 *
 b10 8
-b10 A
+b10 W
 10
 #48
 00
@@ -215,20 +262,20 @@ b10 A
 b1000 "
 b1000 :
 b1000 >
-b0 M
-b1011 R
-b1100 Q
-b1 P
+b0 c
+b1011 h
+b1100 g
+b1 f
 b10 +
 b10 <
 b1 *
 b1 8
-b1 A
+b1 W
 b1000 -
 b1000 6
-b1000 ?
-b10 O
-1B
+b1000 U
+b10 e
+1X
 10
 #54
 00
@@ -236,35 +283,35 @@ b10 O
 b1011 "
 b1011 :
 b1011 >
-b0 M
-b1011 R
-b1100 Q
-b10 P
+b0 c
+b1011 h
+b1100 g
+b10 f
 b1010 +
 b1010 <
 b0 *
 b0 8
-b0 A
+b0 W
 b11 -
 b11 6
-b11 ?
-b1010 O
+b11 U
+b1010 e
 10
 #60
 00
 #63
 b10 %
 b10 9
-b10 H
-1C
-0B
+b10 ^
+1Y
+0X
 10
 #66
 00
 #69
 b10 ,
 b10 7
-b10 @
+b10 V
 10
 #72
 00
@@ -312,7 +359,7 @@ b10 @
 00
 #135
 1(
-1F
+1\
 10
 #138
 00
@@ -327,42 +374,42 @@ b10 @
 11
 #153
 0(
-0F
+0\
 1'
-1E
+1[
 10
 #156
 00
 #159
 b1 *
 b1 8
-b1 A
+b1 W
 0'
-0E
+0[
 10
 #162
 00
 #165
 b11 %
 b11 9
-b11 H
+b11 ^
 b10101 "
 b10101 :
 b10101 >
-b0 M
-b1011 R
-b1100 Q
-b0 P
+b0 c
+b1011 h
+b1100 g
+b0 f
 b100001 +
 b100001 <
 b0 *
 b0 8
-b0 A
+b0 W
 b1011 -
 b1011 6
-b1011 ?
-b100001 O
-1B
+b1011 U
+b100001 e
+1X
 10
 #168
 00
@@ -370,21 +417,21 @@ b100001 O
 b0 #
 b0 ;
 b0 =
-b1011 R
-b1100 Q
+b1011 h
+b1100 g
 1$
-1I
-0B
+1_
+0X
 b11 ,
 b11 7
-b11 @
+b11 V
 10
 #174
 00
 #177
 b1 *
 b1 8
-b1 A
+b1 W
 10
 #180
 00
@@ -392,28 +439,28 @@ b1 A
 b1000 #
 b1000 ;
 b1000 =
-b0 M
-b1011 R
-b1100 Q
-b1 P
+b0 c
+b1011 h
+b1100 g
+b1 f
 b10000 +
 b10000 <
 b1000 -
 b1000 6
-b1000 ?
-b10000 O
-1B
+b1000 U
+b10000 e
+1X
 b0 *
 b0 8
-b0 A
+b0 W
 10
 #186
 00
 #189
-0B
+0X
 b1 *
 b1 8
-b1 A
+b1 W
 10
 #192
 00
@@ -421,79 +468,79 @@ b1 A
 b1100 #
 b1100 ;
 b1100 =
-b0 M
-b1011 R
-b1100 Q
-b10 P
+b0 c
+b1011 h
+b1100 g
+b10 f
 b10 +
 b10 <
 b100 -
 b100 6
-b100 ?
-b10 O
-1B
+b100 U
+b10 e
+1X
 b0 *
 b0 8
-b0 A
+b0 W
 10
 #198
 00
 #201
-0B
+0X
 b1 *
 b1 8
-b1 A
+b1 W
 10
 #204
 00
 #207
 b111 +
 b111 <
-b111 O
-1B
+b111 e
+1X
 b10 *
 b10 8
-b10 A
+b10 W
 10
 #210
 00
 #213
 b100 %
 b100 9
-b100 H
-1K
+b100 ^
+1a
 b10100 #
 b10100 ;
 b10100 =
-b0 M
-b1011 R
-b1100 Q
-b11 P
+b0 c
+b1011 h
+b1100 g
+b11 f
 b100000 +
 b100000 <
 b1000 -
 b1000 6
-b1000 ?
-b100000 O
+b1000 U
+b100000 e
 b1 *
 b1 8
-b1 A
+b1 W
 10
 #216
 00
 #219
 0/
-0G
+0]
 0.
-0L
+0b
 1&
-1N
+1d
 b10 *
 b10 8
-b10 A
+b10 W
 b100 ,
 b100 7
-b100 @
+b100 V
 10
 #222
 00
@@ -521,7 +568,7 @@ b100 @
 00
 #255
 1(
-1F
+1\
 10
 #258
 00
