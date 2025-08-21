@@ -1,3 +1,2 @@
-Multiplier\csa.sv
-Multiplier\csa_tb.sv
-Multiplier\multiplier.sv
+Contador_Sincrono_FSM\ContadorSincrono.sv
+Contador_Sincrono_FSM\ContadorSincrono_tb.sv

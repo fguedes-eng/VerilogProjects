@@ -1,13 +1,13 @@
 `timescale 1ns/1ns
 
-module cnt_asc_mod7_tb ();
+module cnt_random_seq_tb ();
 
 reg clk;
 reg reset;
 wire [2:0] led;
 
 
-cnt_asc_mod7 DUT (clk, reset, led);
+cnt_random_seq DUT (clk, reset, led);
 
 initial begin
     clk = 0;
@@ -17,13 +17,17 @@ initial begin
 end
 
 initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, cnt_random_seq_tb);
     $monitor("at %t: led = %d", $realtime, led);
+    reset = 1;
+    #1;
     reset = 0;
     #100;
     reset = 1;
     #100;
     reset = 0;
     #100;
-    $stop;
+    $finish;
 end
 endmodule

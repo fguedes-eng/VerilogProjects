@@ -1,4 +1,4 @@
-module cnt_asc_mod7 (
+module cnt_random_seq (
     input clk,
     input reset,
     output reg [2:0] led
@@ -20,8 +20,8 @@ always @(*) begin
     led = Q;
 end
 
-assign D[2] = (Q[2] & ~Q[1]) | (~Q[2] & Q[1] & Q[0]);
-assign D[1] = (~Q[1] & Q[0]) | (~Q[2] & Q[1] & ~Q[0]);
-assign D[0] = (~Q[2] & ~Q[0]) | (~Q[1] & ~Q[0]);
+assign D[2] = (~Q[2] & ~Q[1]) | (~Q[2] & Q[0]) | (Q[2] & Q[1] & ~Q[0]);
+assign D[1] = (~Q[2] & Q[1]) | (~Q[1] & Q[0]);
+assign D[0] = (~Q[2] & Q[1]) | (Q[2] & ~Q[0]);
         
 endmodule
