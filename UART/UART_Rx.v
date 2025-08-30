@@ -17,7 +17,7 @@ reg [3:0] counter; //contador
 reg [3:0] nextCounter; //próximo contador
 reg [8 - 1:0] RxBuffer; //buffer que segura os dados sendo enviados em série, pra jogar paralelo na saída
 reg [8 - 1:0] nextRxBuffer; //próximo dado do buffer anterior
-reg read_end; //indica fim da leitura
+reg send_finish; //indica fim da leitura
 
 
     /* Sequencial */
@@ -66,13 +66,13 @@ reg read_end; //indica fim da leitura
             /* Joga o conteúdo do buffer na saída em paralelo, e indica o fim da leitura */
             S4: begin
                 DataOut = RxBuffer;
-                read_end = 1;
+                send_finish = 1;
                 nextState = S0;
             end
 
             default: begin
                 nextState = S0;
-                read_end = 0;
+                send_finish = 0;
             end
 
         endcase
