@@ -10,6 +10,6 @@ set "ARQUIVO=logic_filelist.txt"
 
 type nul > "%ARQUIVO%"
 > "%ARQUIVO%" (
-  for %%f in ("%PASTA%\*.sv") do echo %PASTA%\%%~nxf
+  for %%f in ("%PASTA%\*.sv" "%PASTA%\*.v") do echo %PASTA%\%%~nxf
 )
 endlocal
