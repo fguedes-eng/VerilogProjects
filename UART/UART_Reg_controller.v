@@ -1,9 +1,9 @@
-module Reg_cntrl(
+module UART_Reg_cntrl(
     input clk,
     input rst,
     input In_rdy,
     input FIFO_full,
-    input TX_busy,
+    input Tx_Busy,
     output reg Send_TX,
     output reg FIFO_send,
     output reg Overflow
@@ -31,6 +31,7 @@ always @(posedge clk or posedge rst) begin
         In_rdy_sync1 <= In_rdy;
         In_rdy_sync2 <= In_rdy_sync1;
         In_rdy_prev <= In_rdy_sync2;
+        Overflow <= nextOverflow;
     end
 end
 
@@ -47,7 +48,7 @@ always @(*) begin
         nextFIFO_send = 0;
         nextOverflow = 0;
     end
-    if (TX_busy)
+    if (Tx_Busy)
         nextSend_TX = 0;
     else 
         nextSend_TX = 1;

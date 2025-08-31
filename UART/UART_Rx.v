@@ -1,12 +1,13 @@
-module Rx (
+module UART_Rx #(parameter WIDTH = 8)
+(
     input Rx,                  // entrada Rx de um bit serial
     input clk,                 // clk
     input rst,                 // reset assíncrono
     input selected_parity,
-    output reg [7:0] DataOut,  // saída no barramento
+    output reg [WIDTH - 1:0] Data_Out,  // saída no barramento
     output reg ParityError,
     output reg StopBitError,
-    output reg Out_rdy          // indica que DataOut está válido
+    output reg Out_rdy          // indica que Data_Out está válido
 );
 
 /* Estados */
@@ -25,20 +26,26 @@ reg [3:0] counter;     // contador
 reg [3:0] nextCounter; // próximo contador
 reg [7:0] nextDataOut; // próximo dado do buffer anterior
 reg incomingParity;
+reg nextOut_rdy;
+reg nextParityError;
+reg nextStopBitError;
 
 /* Sequencial */
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         state     <= S0;
         counter   <= 4'b0;
-        DataOut   <= 8'b0;
+        Data_Out   <= 8'b0;
         ParityError  <= 0;
         StopBitError <= 0;
         Out_rdy      <= 0;
     end else begin
         state     <= nextState;
         counter   <= nextCounter;
-        DataOut   <= nextDataOut;
+        Data_Out   <= nextDataOut;
+        Out_rdy <= nextOut_rdy;
+        ParityError <= nextParityError;
+        StopBitError <= nextStopBitError;
         // Flags são atualizadas combinacionalmente em always @(*)
     end
 end
@@ -46,12 +53,12 @@ end
 /* Máquina de estados */
 always @(*) begin
     // defaults
-    nextState     = state;
-    nextCounter   = counter;
-    nextDataOut   = DataOut;
-    ParityError   = 0;
-    StopBitError  = 0;
-    Out_rdy       = 0;
+    nextState           = state;
+    nextCounter         = counter;
+    nextDataOut         = Data_Out;
+    nextParityError     = 0;
+    nextStopBitError    = 0;
+    nextOut_rdy         = 0;
 
     case (state)
         /* Aguarda start bit */
@@ -73,9 +80,9 @@ always @(*) begin
         S2: begin
             incomingParity = Rx;
             if (selected_parity == PAR)
-                ParityError = ( (^DataOut) != incomingParity );
+                nextParityError = ( (^Data_Out) != incomingParity );
             else
-                ParityError = ( (~^DataOut) != incomingParity );
+                nextParityError = ( (~^Data_Out) != incomingParity );
             nextState = S3;
         end
 
@@ -84,15 +91,15 @@ always @(*) begin
             if (Rx == 1)
                 nextState = S4;
             else begin
-                StopBitError = 1;
+                nextStopBitError = 1;
                 nextState = S4;
             end
         end
 
         /* Indica fim da leitura */
         S4: begin
-            Out_rdy    = 1;   // DataOut válido
-            nextState  = S0;
+            nextOut_rdy = 1;   // Data_Out válido
+            nextState   = S0;
         end
 
         default: begin

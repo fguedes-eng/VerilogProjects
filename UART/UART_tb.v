@@ -1,115 +1,203 @@
 `timescale 1ns/1ns
 
-module UART_tb ();
+module UART_tb #(parameter WIDTH = 8) ();
 
-reg [8 - 1:0] DataIn;
-reg [8 - 1:0] DataOut;
-reg clk;
-reg rst;
-reg StopBit;
-reg In_rdy;
-reg RW;
-reg [1:0] baud_select;
-reg baud_clock;
-reg parity_sel;
-wire selected_parity;
-wire FIFO_full;
-wire Tx_busy;
-wire Send_TX;
-wire FIFO_send;
-wire Overflow;
-wire Tx;
-wire Parity;
-wire ParityError;
-wire StopBitError;
-wire Out_rdy;
+//----------------------------------------------------------------
+//Entradas do sistema:
+//----------------------------------------------------------------
+
+//-------------------------------------------
+//Entradas:
+//-------------------------------------------
+
+    reg [WIDTH - 1:0] Data_In;
+    reg clk;
+    reg rst;
+    reg In_rdy;
+    reg [1:0] baud_select;
+    reg parity_sel;
+	reg Rx;
+
+//-------------------------------------------
+//Saídas:
+//-------------------------------------------
+
+    wire [WIDTH - 1:0] Data_Out;
+    wire Overflow;
+    wire Tx;
+    wire Parity;
+    wire ParityError;
+    wire StopBitError;
+    wire Out_rdy;
+
+
+//----------------------------------------------------------------
+//Parametros de clock:
+//----------------------------------------------------------------
 
 parameter BAUD_RATE_9600  = 2'b00;
 parameter BAUD_RATE_19200 = 2'b01;
 parameter BAUD_RATE_38400 = 2'b10;
 parameter BAUD_RATE_57600 = 2'b11;
 
-parameter BAUD_CYCLE = 288500;
-parameter WAIT = BAUD_CYCLE * 5;
+//Cats para tempos:
+parameter BAUD_CYCLE = 104160;
+parameter WAIT = 1041600;
+parameter WAIT_TX = 350000;
 
-parameter PAR = 0;
-parameter IMPAR = 1;
+//----------------------------------------------------------------
+//Instância do top-level:
+//----------------------------------------------------------------
 
-Baud_Rate BaudRate_tb(clk, rst, baud_select, baud_clock);
-/*
-input [8 - 1:0] Data_In, //dado no barramento
-    input clk, //clock
-    input rst,
-    input Parity, //bit de paridade
-    input StopBit, //bit de Stop
-    input Send_TX, //ativo manda a entrada para os registradores de buffer
-    input FIFO_send,
-    output reg Tx, //bit único sendo enviado Tx
-    output reg Tx_busy,
-    output reg FIFO_full
-    */
-Tx Tx_tb(DataIn, baud_clock, rst, Parity, StopBit, Send_TX, FIFO_send, Tx, TX_busy, FIFO_full);
+UART dut(
+//-------------------------------------------
+//Entradas:
+//-------------------------------------------
 
-/*
-input Rx,                  // entrada Rx de um bit serial
-    input clk,                 // clk
-    input rst,                 // reset assíncrono
-    input selected_parity,
-    output reg [7:0] DataOut,  // saída no barramento
-    output reg ParityError,
-    output reg StopBitError,
-    output reg Out_rdy          // indica que DataOut está válido
-    */
-Rx Rx_tb(Tx, baud_clock, rst, selected_parity, DataOut, ParityError, StopBitError, Out_rdy);
-/* input parity_sel,
-    input [8 - 1:0] dataIn,
-    output parity,
-    output selected_parity
-    */
-Parity Parity_tb(parity_sel, DataIn, Parity, selected_parity);
+    .Data_In                (Data_In),
+    .clk                    (clk),
+    .rst                    (rst),
+    .In_rdy                 (In_rdy),
+    .baud_select            (baud_select),
+    .parity_sel             (parity_sel),
+	.Rx                     (Tx),
 
-/*
-input clk,
-    input rst,
-    input In_rdy,
-    input FIFO_full,
-    input TX_busy,
-    output reg Send_TX,
-    output reg FIFO_send,
-    output reg Overflow
-    */
-Reg_cntrl Reg_ctrl_tb(baud_clock, rst, In_rdy, FIFO_full, TX_busy, Send_TX, FIFO_send, Overflow);
+//-------------------------------------------
+//Saídas:
+//-------------------------------------------
 
+    .Data_Out               (Data_Out),
+    .Overflow               (Overflow),
+    .Tx                     (Tx),
+    .Parity                 (Parity),
+    .ParityError            (ParityError),
+    .StopBitError           (StopBitError),
+    .Out_rdy                (Out_rdy)
+);
 
+//----------------------------------------------------------------
+//Geração do clock global que alimenta o top:
+//----------------------------------------------------------------
 
-initial begin
-    clk = 0;
-    forever #10 clk = ~clk; //50MHz
-end
+    initial begin
+        clk = 0;
+        forever #10 clk = ~clk; //50MHz
+    end
+
+    //Task de Reset
+    task automatic reset;
+    begin
+    rst = 1; #5;
+    end
+    endtask
 
 initial begin
     $dumpfile("dump.vcd");
-    $dumpvars(0, UART_tb);
+    $dumpvars(0);
+    reset();
     baud_select = BAUD_RATE_9600;
-    rst = 1;
-    #1;
-    rst = 0;
-    In_rdy = 0;
-    RW = 0;
-    StopBit = 1;
-    parity_sel = PAR;
-    DataIn = 8'b0100_1101;
-    #10;
+ //Limpeza de estados pré-sistemica
+    /*$display
+    (" Tempo | Data_In | clk | rst | In_rdy | baud_select | parity_sel | Tx | Data_Out | Overflow | Parity | ParityError | StopBitError | Out_rdy");
+    $monitor
+    ("%4dns  |   %08b  |  %b |  %b |   %b   |      %b     |      %b    | %b |    %b    |    %b    |    %b  |      %b     |      %b      |     %b   | ",
+
+        //Sinais
+        $time,                 
+            //Entradas:
+            Data_In,
+            clk,
+            rst,
+            In_rdy,
+            baud_select,
+            parity_sel,
+            Rx,
+
+            //Saídas:
+            Data_Out,
+            Overflow,
+            Tx,
+            Parity,
+            ParityError,
+            StopBitError,
+            Out_rdy
+    ); */
+
+    //1º Rotina de testes - Caso normal de transmisão 0x57:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b0;         
+    Data_In = 8'h57;        #2;
     In_rdy = 1;
     #BAUD_CYCLE;
     In_rdy = 0;
+
+    #WAIT_TX;
+    //2º - Casos de borda
+    //1º Caso de borda - 0x00:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b1;         
+    Data_In = 8'h00;        #2;
+    In_rdy = 1;
+    #BAUD_CYCLE;
+    In_rdy = 0;
+
+    #WAIT_TX;
+    //2º Caso de borda - 0x11:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b0;         
+    Data_In = 8'h11;        #2;
+    In_rdy = 1;
+    #BAUD_CYCLE;
+    In_rdy = 0;
+
+    #WAIT_TX;
+    //3º Caso de borda - 0x22:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b1;         
+    Data_In = 8'h22;        #2;
+    In_rdy = 1;
+    #BAUD_CYCLE;
+    In_rdy = 0;
+
+    #WAIT_TX;
+    //4º Caso de borda - 0x33:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b0;         
+    Data_In = 8'h33;        #2;
+    In_rdy = 1;
+    #BAUD_CYCLE;
+    In_rdy = 0;
+
+    #WAIT_TX;
+    //5º Caso de borda - 0x44:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b1;         
+    Data_In = 8'h44;        #2;
+    In_rdy = 1;
+    #BAUD_CYCLE;
+    In_rdy = 0;
+
+    #WAIT_TX;
+    //6º Caso de borda - 0x55:
+    rst = 1'b0;             
+    In_rdy = 0;    
+    parity_sel = 1'b0;         
+    Data_In = 8'h55;        #2;
+    In_rdy = 1;
+    #BAUD_CYCLE;
+    In_rdy = 0;
+
     #WAIT;
-    DataIn = 8'b1011_0011;
-    #10;
-    In_rdy = 1;
-    #BAUD_CYCLE;
-    In_rdy = 0;
-    #20000000;
+    #WAIT;
+    #WAIT;
+    #WAIT;
+
     $finish;
 end
 

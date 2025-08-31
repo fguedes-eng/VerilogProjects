@@ -7,6 +7,7 @@ module Baud_Rate (
 
 reg [31:0] counter;
 reg [31:0] nextCounter;
+reg nextBaudRate;
 
 /* frequência de clk = 50MHz */
 
@@ -17,11 +18,12 @@ parameter BAUD_RATE_57600 = 2'b11;
 
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        counter = 0;
-        BaudRate = 0;
+        counter <= 0;
+        BaudRate <= 0;
     end 
     else begin
         counter <= nextCounter;
+        BaudRate <= nextBaudRate;
     end
 end
 
@@ -29,50 +31,50 @@ always @(*) begin
     case (baud_sel)
         BAUD_RATE_9600: begin
             if (counter == 5208 / 2) begin
-                BaudRate = ~BaudRate;
+                nextBaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
-                BaudRate = BaudRate;
+                nextBaudRate = BaudRate;
                 nextCounter = counter + 1;
             end
         end
 
         BAUD_RATE_19200: begin
             if (counter == 2604 / 2) begin
-                BaudRate = ~BaudRate;
+                nextBaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
-                BaudRate = BaudRate;
+                nextBaudRate = BaudRate;
                 nextCounter = counter + 1;
             end
         end
         
         BAUD_RATE_38400: begin
             if (counter == 1302 / 2) begin
-                BaudRate = ~BaudRate;
+                nextBaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
-                BaudRate = BaudRate;
+                nextBaudRate = BaudRate;
                 nextCounter = counter + 1;
             end
         end
         
         BAUD_RATE_57600: begin
             if (counter == 868 / 2) begin 
-                BaudRate = ~BaudRate;
+                nextBaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
-                BaudRate = BaudRate;
+                nextBaudRate = BaudRate;
                 nextCounter = counter + 1;
             end
         end
 
         default:
-            if (counter == 5208) begin
-                BaudRate = ~BaudRate;
+            if (counter == 5208 / 2) begin
+                nextBaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
-                BaudRate = BaudRate;
+                nextBaudRate = BaudRate;
                 nextCounter = counter + 1;
             end
     endcase
