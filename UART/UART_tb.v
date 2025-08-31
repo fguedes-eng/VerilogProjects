@@ -29,8 +29,8 @@ parameter BAUD_RATE_19200 = 2'b01;
 parameter BAUD_RATE_38400 = 2'b10;
 parameter BAUD_RATE_57600 = 2'b11;
 
-parameter BAUD_CYCLE = 104160;
-parameter WAIT = 1041600;
+parameter BAUD_CYCLE = 288500;
+parameter WAIT = BAUD_CYCLE * 5;
 
 parameter PAR = 0;
 parameter IMPAR = 1;
@@ -84,7 +84,7 @@ Reg_cntrl Reg_ctrl_tb(baud_clock, rst, In_rdy, FIFO_full, TX_busy, Send_TX, FIFO
 
 initial begin
     clk = 0;
-    forever #20 clk = ~clk; //50MHz
+    forever #10 clk = ~clk; //50MHz
 end
 
 initial begin
@@ -99,12 +99,13 @@ initial begin
     StopBit = 1;
     parity_sel = PAR;
     DataIn = 8'b0100_1101;
-    #BAUD_CYCLE;
+    #10;
     In_rdy = 1;
     #BAUD_CYCLE;
     In_rdy = 0;
-    DataIn = 8'b1011_0011;
     #WAIT;
+    DataIn = 8'b1011_0011;
+    #10;
     In_rdy = 1;
     #BAUD_CYCLE;
     In_rdy = 0;

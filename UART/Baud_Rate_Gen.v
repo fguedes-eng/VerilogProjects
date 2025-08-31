@@ -58,7 +58,7 @@ always @(*) begin
         end
         
         BAUD_RATE_57600: begin
-            if (counter == 868 / 2) begin
+            if (counter == 868 / 2) begin 
                 BaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
