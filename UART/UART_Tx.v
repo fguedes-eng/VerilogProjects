@@ -1,12 +1,14 @@
 module Tx (
-    input [8 - 1:0] DataIn, //dado no barramento
+    input [8 - 1:0] Data_In, //dado no barramento
     input clk, //clock
     input rst,
     input Parity, //bit de paridade
     input StopBit, //bit de Stop
-    input bit_send, //ativo manda a entrada para os registradores de buffer
-    input RW, //TODO: Indica se está lendo ou escrevendo (integrar Tx com Rx para comunicação full duplex)
-    output reg Tx //bit único sendo enviado Tx
+    input Send_TX, //ativo manda a entrada para os registradores de buffer
+    input FIFO_send,
+    output reg Tx, //bit único sendo enviado Tx
+    output reg Tx_busy,
+    output reg FIFO_full
 );
 
 /* Estados */
@@ -16,57 +18,77 @@ parameter  S2 = 3'b010;
 parameter  S3 = 3'b011;
 parameter  S4 = 3'b100;
 
+reg [8 - 1:0] FIFO [0:3];
+reg [8 - 1:0] nextFIFO [0:3];
+reg [8 - 1:0] nextTxBuffer;
+reg [8 - 1:0] TxBuffer;
+
 reg [3:0] state; //estado atual
 reg [3:0] nextState; //próximo estado
 reg [3:0] counter; //contador
 reg [3:0] nextCounter; //próximo contador
 reg nextTx; //próximo bit de transmissão
-reg [8 - 1:0] BufferIn; //buffer que pode receber a entrada diretamente ou do buffer reserva, e envia a Tx
-reg [8 - 1:0] WaitBufferIn; //buffer que recebe a entrada caso esteja ocorrendo um envio
-reg [8 - 1:0] nextBufferIn; //próximo dado do buffer de envio
-reg [8 - 1:0] nextWaitBufferIn; //próximo dado do buffer de espera
-reg WaitBufferInActive; //flag que indica se existe pendência no buffer de espera para ter os dados capturados
-reg nextWaitBufferInActive; //próximo estado da flag anterior
-reg bit_send_prev;
-wire bit_send_edge;
-reg bit_send_sync1;
-reg bit_send_sync2;
+reg nextFIFO_full;
+reg nextTx_busy;
+
+reg [2:0] wr_ptr; 
+reg [2:0] nextWr_ptr;
+reg [2:0] rd_ptr;
+reg [2:0] nextRd_ptr;
+
 
     /* Sequencial */
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             Tx <= 1;
-            bit_send_sync1 <= 0;
-            bit_send_sync2 <= 0;
-            bit_send_prev <= 0;
+            wr_ptr <= 0;
+            rd_ptr <= 0;
+            nextRd_ptr <= 0;
+            nextWr_ptr <= 0;
+            FIFO[0] <= 0;
+            FIFO[1] <= 0;
+            FIFO[2] <= 0;
+            FIFO[3] <= 0;
+            TxBuffer <= 0;
+            state <= S0;
+            Tx_busy <= 0;
+            FIFO_full <= 0;
         end else begin
             state <= nextState;
             counter <= nextCounter;
             Tx <= nextTx;
-            BufferIn <= nextBufferIn;
-            WaitBufferIn <= nextWaitBufferIn;
-            WaitBufferInActive <= nextWaitBufferInActive;
-
-            bit_send_sync1 <= bit_send;
-            bit_send_sync2 <= bit_send_sync1;
-            bit_send_prev <= bit_send_sync2;
+            FIFO[0] <= nextFIFO[0];
+            FIFO[1] <= nextFIFO[1];
+            FIFO[2] <= nextFIFO[2];
+            FIFO[3] <= nextFIFO[3];
+            TxBuffer <= nextTxBuffer;
+            wr_ptr <= nextWr_ptr;
+            rd_ptr <= nextRd_ptr;
+            FIFO_full <= nextFIFO_full;
+            Tx_busy <= nextTx_busy;
         end
     end
 
-    /* Ativa buffer reserva para não perder envio de dados */
+    /* FIFO */
     always @(*) begin
-        /* Descarta quaisquer bits se o buffer de espera estiver cheio */
-        if (WaitBufferInActive) begin
-            nextBufferIn = BufferIn;
-            nextWaitBufferInActive = WaitBufferInActive;
-        end
-        /* Recebe dados no buffer de espera se estiver no meio de uma transmissão */ 
-        else if (bit_send_edge == 1 && state != S0) begin
-            nextWaitBufferIn = DataIn;
-            nextWaitBufferInActive = 1;
-        end else begin
-            nextWaitBufferIn = WaitBufferIn;
-            nextWaitBufferInActive = WaitBufferInActive;
+        // Mantém os valores atuais por default
+        nextFIFO[0] = FIFO[0];
+        nextFIFO[1] = FIFO[1];
+        nextFIFO[2] = FIFO[2];
+        nextFIFO[3] = FIFO[3];
+        nextWr_ptr = wr_ptr;
+        nextFIFO_full = FIFO_full;
+
+        if (FIFO_send) begin
+            // Escreve o dado na posição atual
+            nextFIFO[wr_ptr[1:0]] = Data_In;
+            // Incrementa ponteiro circularmente
+            nextWr_ptr = (wr_ptr + 1) & 3;
+            // Atualiza flag full
+            if (nextWr_ptr == rd_ptr)
+                nextFIFO_full = 1;
+            else
+                nextFIFO_full = 0;
         end
     end
 
@@ -75,22 +97,22 @@ reg bit_send_sync2;
         case (state)
             /* Estado inicial, aguarda dados */
             S0: begin
+                nextTx_busy = 0;
                 nextTx = 1;
                 nextCounter = 4'b0000;
-                if (WaitBufferInActive) begin
-                    nextState = S1;
-                    nextBufferIn = WaitBufferIn;
-                    nextWaitBufferInActive = 0;
+                if (Send_TX == 1 && rd_ptr != wr_ptr) begin
+                    nextTxBuffer = FIFO[rd_ptr[1:0]]; // lê o dado do FIFO
+                    nextRd_ptr = (rd_ptr + 1) & 3;    // incrementa circularmente
+                    nextState = S1;                   // inicia transmissão
                 end
-                else if (bit_send_edge == 1) begin
-                    nextState = S1;
-                    nextBufferIn = DataIn;
-                end else begin
+                else begin
                     nextState = state;
+                    nextTxBuffer = TxBuffer;
                 end
             end
             /* Envia start bit */
             S1: begin
+                nextTx_busy = 1;
                 nextTx = 0;
                 nextCounter = 4'b0000;
                 nextState = S2;
@@ -98,7 +120,7 @@ reg bit_send_sync2;
             /* Envia todos os bits do barramento em sequência */
             S2: begin
                 nextCounter = counter + 4'b0001;
-                nextTx = BufferIn[counter];
+                nextTx = TxBuffer[counter];
                 if (counter == 7) begin
                     nextState = S3;
                 end else begin
@@ -118,10 +140,7 @@ reg bit_send_sync2;
 
             default: begin
                 nextState = S0;
-                WaitBufferInActive = 0;
             end
         endcase
     end
-
-    assign bit_send_edge = bit_send_sync2 & ~bit_send_prev;
 endmodule

@@ -28,7 +28,7 @@ end
 always @(*) begin
     case (baud_sel)
         BAUD_RATE_9600: begin
-            if (counter == 5208) begin
+            if (counter == 5208 / 2) begin
                 BaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
@@ -38,7 +38,7 @@ always @(*) begin
         end
 
         BAUD_RATE_19200: begin
-            if (counter == 2604) begin
+            if (counter == 2604 / 2) begin
                 BaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
@@ -48,7 +48,7 @@ always @(*) begin
         end
         
         BAUD_RATE_38400: begin
-            if (counter == 1302) begin
+            if (counter == 1302 / 2) begin
                 BaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
@@ -58,7 +58,7 @@ always @(*) begin
         end
         
         BAUD_RATE_57600: begin
-            if (counter == 868) begin
+            if (counter == 868 / 2) begin
                 BaudRate = ~BaudRate;
                 nextCounter = 0;
             end else begin
