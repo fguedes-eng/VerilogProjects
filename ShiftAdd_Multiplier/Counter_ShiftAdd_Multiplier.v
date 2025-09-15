@@ -1,4 +1,4 @@
-module Counter_ShiftAdd_Multiplier (
+module Counter_ShiftAdd_Multiplier #(parameter WIDTH = 4) (
     input clk,
     input rst,
     input ld_count,
@@ -6,8 +6,9 @@ module Counter_ShiftAdd_Multiplier (
 );
     wire [2:0] nextCount;
 
-    always @(posedge clk) begin
-        count <= nextCount;
+    always @(posedge clk or posedge rst) begin
+        if (rst) count <= 0;
+        else count <= nextCount;
     end
 
     assign nextCount = (ld_count == 1) ? (count + 1) : count;
