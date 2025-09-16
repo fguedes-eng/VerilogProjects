@@ -1,16 +1,16 @@
 `timescale 1ns/1ns
 
-module ShiftAdd_Multiplier_tb ();
+module ShiftAdd_Multiplier_tb #(parameter WIDTH = 16) ();
 
     reg clk;
     reg rst;
-    reg [3:0] multiplier;
-    reg [3:0] multiplicand;
+    reg [WIDTH - 1:0] multiplier;
+    reg [WIDTH - 1:0] multiplicand;
     reg start;
-    wire [8:0] product;
+    wire [WIDTH * 2:0] product;
     wire done;
 
-    ShiftAdd_Multiplier Multiplier(.clk(clk), .rst(rst), .multiplier(multiplier), .multiplicand(multiplicand), .start(start), .product(product), .done(done));
+    ShiftAdd_Multiplier #(.TOP_WIDTH(WIDTH)) Multiplier(.clk(clk), .rst(rst), .multiplier(multiplier), .multiplicand(multiplicand), .start(start), .product(product), .done(done));
 
     initial begin
         clk = 0;
@@ -21,8 +21,8 @@ module ShiftAdd_Multiplier_tb ();
         $dumpfile("dump.vcd");
         $dumpvars(0, ShiftAdd_Multiplier_tb);
         $monitor("at %t: done = %b, product = %b, start = %b, rst = %b", $realtime, done, product, start, rst);
-        multiplier = 4'b1111;
-        multiplicand = 4'b1111;
+        multiplier = 16'b1001_0110_1110_0011;
+        multiplicand = 16'b0011_0110_1111_0010;
         start = 0;
         rst = 1;
         #5;
@@ -35,7 +35,7 @@ module ShiftAdd_Multiplier_tb ();
         //while (!done) begin
 
         //end
-        #10000;
+        #1500;
         $display("result of %b x %b = %b (%d x %d = %d)", multiplier, multiplicand, product, multiplier, multiplicand, product);
         $finish;
     end
