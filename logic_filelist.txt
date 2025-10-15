@@ -1,2 +1,6 @@
-Contador_Sincrono_FSM\ContadorSincrono.sv
-Contador_Sincrono_FSM\ContadorSincrono_tb.sv
+Processor_RISC\AA_mnemonics_pkg.sv
+Processor_RISC\ALU.sv
+Processor_RISC\Control_unit.sv
+Processor_RISC\Data_memory.sv
+Processor_RISC\Instruction_decoder.sv
+Processor_RISC\Registers.sv

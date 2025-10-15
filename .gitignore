@@ -1,0 +1,10 @@
+*
+
+# Não ignorar nada dentro das pastas
+!**/*
+
+# Do not ignore folders
+!*/
+
+#do not ignore script
+!script.bat

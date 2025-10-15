@@ -18,6 +18,8 @@
 			"type": "shell",
 			"command": "iverilog",
 			"args": [
+				"-I",
+				"${fileDirnameBasename}/include",
 				"-o",
 				"${fileDirnameBasename}_tb",
 				"-c",
