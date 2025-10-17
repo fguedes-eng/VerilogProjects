@@ -10,11 +10,11 @@ module Control_unit(
     output logic regWrite,
     output logic [3:0] ALUop,
     output logic memWrite,
-    output logic WBSel,
+    output logic [1:0] WBSel,
     output logic ALUReg1PCSel,
     output logic ALUReg2ImmSel,
-    output logic PCSel,
-    output logic [3:0] memRWSize
+    output logic [1:0] PCSel,
+    output logic [2:0] memRWSize
 );
 
 always @(*) begin
@@ -25,14 +25,14 @@ always @(*) begin
             regWrite = 1'b1;
             WBSel = WB_ALU; //escreve o resultado da operação
             ALUReg1PCSel = AMUX1_REG; //faz operação com reg1 e reg2
-            ALUReg2ImmSel = AMUX2_REG; 
+            ALUReg2ImmSel = AMUX2_REG;
             PCSel = PC_PLUS4; //próxima instrução
-            memRWSize = 3'bxxx; 
+            memRWSize = 3'bxxx;
 
             case ({funct7, funct3})
-                
+
                 10'b0000000_000: begin //ADD
-                    ALUop = ADD;        
+                    ALUop = ADD;
                 end
 
                 10'b0100000_000: begin //SUB
@@ -137,6 +137,7 @@ always @(*) begin
             ALUReg1PCSel = AMUX1_REG; //Pega o conteúdo do reg na posição rs1
             ALUReg2ImmSel = AMUX2_IMM; //opera com o valor imediato
             PCSel = PC_PLUS4; //próxima instrução
+            memRWSize = 3'bxxx;
             case (funct3)
                 3'b000: begin
                     ALUop = ADD;
@@ -190,6 +191,7 @@ always @(*) begin
             ALUReg2ImmSel = AMUX2_IMM; //opera com o valor imediato
             PCSel = PC_ALU; //próxima instrução dada pelo conteúdo do reg + offset
             ALUop = ADD;
+            memRWSize = 3'bxxx;
         end
 
         Btype: begin
@@ -199,6 +201,7 @@ always @(*) begin
             ALUReg1PCSel = AMUX1_REG; //Pega o conteúdo do reg na posição rs1
             ALUReg2ImmSel = AMUX2_REG; //Pega o conteúdo do reg na posição rs2
             PCSel = PC_IMM; //próxima instruação dada pelo conteúdo do PC atual + offset (valor imediato)
+            memRWSize = 3'bxxx;
 
             case (funct3)
                 3'b000: begin //BEQ
@@ -235,6 +238,7 @@ always @(*) begin
             ALUReg2ImmSel = 1'bx; //Não usa ALU
             PCSel = PC_PLUS4; //próxima instrução
             ALUop = 4'bxxxx; //Não usa ALU
+            memRWSize = 3'bxxx;
         end
 
         UtypeAUIPC: begin
@@ -245,6 +249,7 @@ always @(*) begin
             ALUReg2ImmSel = AMUX2_IMM; //Pega o valor imediato shiftado de 12 (upper)
             PCSel = PC_PLUS4; //próxima instrução
             ALUop = ADD;
+            memRWSize = 3'bxxx;
         end
 
         Jtype: begin
@@ -255,6 +260,7 @@ always @(*) begin
             ALUReg2ImmSel = 1'bx; //Não usa ALU
             PCSel = PC_IMM; // próxima instrução determinada pelo valor imediato
             ALUop = 4'bxxxx; //Não usa ALU
+            memRWSize = 3'bxxx;
         end
 
     endcase

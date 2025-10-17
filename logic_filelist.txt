@@ -3,4 +3,9 @@ Processor_RISC\ALU.sv
 Processor_RISC\Control_unit.sv
 Processor_RISC\Data_memory.sv
 Processor_RISC\Instruction_decoder.sv
+Processor_RISC\Instruction_memory.sv
+Processor_RISC\Multiplexers.sv
+Processor_RISC\Program_Counter.sv
 Processor_RISC\Registers.sv
+Processor_RISC\RISC_V.sv
+Processor_RISC\RISC_V_tb.sv

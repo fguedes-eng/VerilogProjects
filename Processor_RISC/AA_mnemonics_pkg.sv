@@ -1,14 +1,14 @@
     package InstrTypes;
 
-        parameter Rtype        = 0110011;
-        parameter ItypeImm     = 0010011;
-        parameter ItypeLd      = 0000011;
-        parameter ItypeJALR    = 1100111;
-        parameter Stype        = 0100011;
-        parameter Btype        = 1100011;
-        parameter UtypeLUI     = 0110111;
-        parameter UtypeAUIPC   = 0010111;
-        parameter Jtype        = 1101111;
+        parameter Rtype        = 7'b0110011;
+        parameter ItypeImm     = 7'b0010011;
+        parameter ItypeLd      = 7'b0000011;
+        parameter ItypeJALR    = 7'b1100111;
+        parameter Stype        = 7'b0100011;
+        parameter Btype        = 7'b1100011;
+        parameter UtypeLUI     = 7'b0110111;
+        parameter UtypeAUIPC   = 7'b0010111;
+        parameter Jtype        = 7'b1101111;
 
     endpackage
 

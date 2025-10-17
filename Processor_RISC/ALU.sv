@@ -14,7 +14,7 @@ assign u_in1 = in1;
 assign u_in2 = in2;
 
 always @(*) begin
-    case (opcode) 
+    case (opcode)
         ADD:
             out = in1 + in2;
         SUB:
@@ -24,7 +24,7 @@ always @(*) begin
         SRL:
             out = in1 >> in2[4:0];
         SRA:
-            out = in1 >>> in2[4:0]; 
+            out = in1 >>> in2[4:0];
         OR:
             out = in1 | in2;
         AND:
@@ -41,7 +41,7 @@ always @(*) begin
             out = (in1 == in2) ? 32'd1 : 32'd0;
         SGTE:
             out = (in1 >= in2) ? 32'd1 : 32'd0;
-        
+
         default:
             out = 32'd0;
     endcase
