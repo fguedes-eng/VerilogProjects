@@ -1,10 +1,7 @@
-*
+yosys uart command.txt
 
-# Não ignorar nada dentro das pastas
-!**/*
+/out
 
-# Do not ignore folders
-!*/
+logic_filelist.txt
 
-#do not ignore script
-!script.bat
+/*/synth

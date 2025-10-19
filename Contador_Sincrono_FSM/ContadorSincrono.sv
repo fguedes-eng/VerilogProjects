@@ -12,7 +12,7 @@ always @(posedge clk or posedge reset) begin
         Q = 3'b000;
     end
     else begin
-    Q <= D;
+        Q <= D;
     end
 end
 

@@ -7,11 +7,11 @@ module ALU (
     output logic [31:0] out
 );
 
-logic [31:0] u_in1;
-logic [31:0] u_in2;
+logic signed [31:0] u_in1;
+logic signed [31:0] u_in2;
 
-assign u_in1 = in1;
-assign u_in2 = in2;
+assign signed_in1 = in1;
+assign signed_in2 = in2;
 
 always @(*) begin
     case (opcode)
@@ -32,15 +32,15 @@ always @(*) begin
         XOR:
             out = in1 ^ in2;
         SLT:
-            out = (in1 < in2) ? 32'd1 : 32'd0;
+            out = (signed_in1 < signed_in2) ? 32'd1 : 32'd0;
         ULT:
-            out = (u_in1 < u_in2) ? 32'd1 : 32'd0;
+            out = (in1 < in2) ? 32'd1 : 32'd0;
         UGTE:
-            out = (u_in1 >= u_in2) ? 32'd1 : 32'd0;
+            out = (in1 >= in2) ? 32'd1 : 32'd0;
         EQ:
             out = (in1 == in2) ? 32'd1 : 32'd0;
         SGTE:
-            out = (in1 >= in2) ? 32'd1 : 32'd0;
+            out = (signed_in1 >= signed_in2) ? 32'd1 : 32'd0;
 
         default:
             out = 32'd0;
