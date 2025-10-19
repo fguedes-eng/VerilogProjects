@@ -7,6 +7,7 @@ module Control_unit(
     input [2:0] funct3,
     input [6:0] funct7,
     input [31:0] imm,
+    input ALUcomp,
     output logic regWrite,
     output logic [3:0] ALUop,
     output logic memWrite,
@@ -83,23 +84,23 @@ always @(*) begin
             ALUReg2ImmSel = AMUX2_IMM; //soma com o valor imediato (offset)
             PCSel = PC_PLUS4; //próxima instrução
             case (funct3)
-                000: begin //lb
+                3'b000: begin //lb
                     memRWSize = MEM_BYTE_SIGNED;
                 end
 
-                001: begin //lh
+                3'b001: begin //lh
                     memRWSize = MEM_HALFWORD_SIGNED;
                 end
 
-                010: begin //lw
+                3'b010: begin //lw
                     memRWSize = MEM_WORD_SIGNED;
                 end
 
-                011: begin //lbu
+                3'b100: begin //lbu
                     memRWSize = MEM_BYTE_UNSIGNED;
                 end
 
-                100: begin //lhu
+                3'b101: begin //lhu
                     memRWSize = MEM_HALFWORD_UNSIGNED;
                 end
 
@@ -115,15 +116,15 @@ always @(*) begin
             ALUReg2ImmSel = AMUX2_IMM; //soma com o valor imediato (offset)
             PCSel = PC_PLUS4; //próxima instrução
             case (funct3)
-                000: begin //sb
+                3'b000: begin //sb
                     memRWSize = MEM_BYTE_SIGNED;
                 end
 
-                001: begin //sh
+                3'b001: begin //sh
                     memRWSize = MEM_HALFWORD_SIGNED;
                 end
 
-                010: begin //sw
+                3'b010: begin //sw
                     memRWSize = MEM_WORD_SIGNED;
                 end
 
@@ -200,7 +201,7 @@ always @(*) begin
             WBSel = 2'bxx; //não escreve em rd
             ALUReg1PCSel = AMUX1_REG; //Pega o conteúdo do reg na posição rs1
             ALUReg2ImmSel = AMUX2_REG; //Pega o conteúdo do reg na posição rs2
-            PCSel = PC_IMM; //próxima instruação dada pelo conteúdo do PC atual + offset (valor imediato)
+            PCSel = ALUcomp ? PC_IMM : PC_PLUS4; //próxima instruação dada pelo conteúdo do PC atual + offset (valor imediato)
             memRWSize = 3'bxxx;
 
             case (funct3)

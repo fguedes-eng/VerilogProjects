@@ -1,7 +1,11 @@
 module RISC_V (
     input clk,
     input rst,
-    input [31:0] mem_input [0:255]
+    input [31:0] mem_input [0:255],
+    /* Output debug */
+    output wire [31:0] x7,
+    output wire [31:0] x8,
+    output wire [31:0] x9
 );
 
 logic [31:0] instruction;
@@ -31,7 +35,6 @@ logic [31:0] wb_in;
 logic [31:0] pc_in;
 logic [31:0] out_data_mem;
 
-
 ALU alu (
     /* INPUTS */
     .in1(alu_in1), //Entrada 1 da ALU
@@ -47,6 +50,7 @@ Control_unit control_unit (
     .funct3(funct3),
     .funct7(funct7),
     .imm(imm),
+    .ALUcomp(ALUout[0]),
     /* OUTPUTS */
     .regWrite(regWrite),
     .ALUop(ALUop),
@@ -133,9 +137,14 @@ Registers registers (
     .ws(rd),        //registrador de destino vindo da instrução
     .wd(wb_in),
     .we(regWrite),
+    .wb_ctrl(WBSel),
     /* OUTPUTS */
     .rd1(rd1),      //read data 1
-    .rd2(rd2)       //read data 2
+    .rd2(rd2),      //read data 2
+    /* Output Debug */
+    .x7(x7),
+    .x8(x8),
+    .x9(x9)
 );
 
 endmodule
