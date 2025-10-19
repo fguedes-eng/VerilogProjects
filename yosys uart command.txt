@@ -1,3 +1,0 @@
-yosys -p "read_verilog -I include Counter_ShiftAdd_Multiplier.v Datapath_ShiftAdd_Multiplier.v FSM_ShiftAdd_Multiplier.v ShiftAdd_Multiplier.v; chparam -set TOP_WIDTH 16 ShiftAdd_Multiplier; hierarchy -top ShiftAdd_Multiplier; synth; write_json ShiftAdd_Multiplier.json"
-netlistsvg ShiftAdd_Multiplier.json -o ShiftAddMultiplier.svg
-inkscape ShiftAddMultiplier.svg --export-type=png --export-dpi=300
