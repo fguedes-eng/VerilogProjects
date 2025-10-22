@@ -183,7 +183,7 @@ always @(*) begin
                 end
             endcase
         end
-        //Rever JALR
+
         ItypeJALR: begin
             memWrite = 1'b0; //não escreve na memória
             regWrite = 1'b1; //escreve no reg

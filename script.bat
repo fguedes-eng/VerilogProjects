@@ -12,6 +12,8 @@ type nul > "%ARQUIVO%"
 > "%ARQUIVO%" (
   for %%f in ("%PASTA%\*.sv" "%PASTA%\*.v") do echo %PASTA%\%%~nxf
 )
-
+if not exist "out" (
+  md "out"
+)
 del /q "out\*.*"
 endlocal
