@@ -6,7 +6,6 @@ module Registers (
     input [4:0] ws,         //write select
     input [31:0] wd,        //write data
     input we,               //write enable
-    input [1:0] wb_ctrl,
     output wire [31:0] rd1, //read data
     output wire [31:0] rd2,
     /* Output debug */
@@ -14,8 +13,6 @@ module Registers (
     output wire [31:0] x8,
     output wire [31:0] x9
 );
-
-localparam WB_IMM = 2'b10;
 
 logic [31:0] rd_wr;
 logic [31:0] reg_cell [0:31];
@@ -102,11 +99,7 @@ always @(posedge clk or posedge rst) begin
         end
     end else begin
         if (we && ws != 0) begin
-            if (wb_ctrl == WB_IMM) begin
-                reg_cell[ws][31:12] <= wd[31:12];
-            end else begin    
-                reg_cell[ws] <= wd;
-            end
+            reg_cell[ws] <= wd;
         end
     end
 end

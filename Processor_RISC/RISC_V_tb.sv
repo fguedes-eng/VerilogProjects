@@ -29,20 +29,20 @@ initial begin
     /* INSTRUÇÕES */
 
     /* Carrega caracteres "'H', 'e', 'l', 'l'" em x1 */
-    instr_input[0] = 32'b1100_01101100_00000_000_00001_0010011; //Carrega 12 bits inferiores do reg x1 //ADDI x1, x0, imm
-    instr_input[1] = 32'b01001000_01100101_0110_00001_0110111; //Carrega 20 bits superiores do reg x1  //LUI x1, imm 
+    instr_input[0] = 32'b01001000_01100101_0111_00001_0110111; //Carrega 20 bits superiores do reg x1  //LUI x1, imm
+    instr_input[1] = 32'b1100_01101100_00001_000_00001_0010011; //Carrega 12 bits inferiores do reg x1 //ADDI x1, x1, imm
     /*************************************************/
     /* Carrega caracteres "'o', ' ', 'w', 'o'" em x2 */
-    instr_input[2] = 32'b0111_01101111_00000_000_00010_0010011; //Carrega 12 bits inferiores do reg x2 //ADDI x2, x0, imm
-    instr_input[3] = 32'b01101111_00100000_0111_00010_0110111; //Carrega 20 bits superiores do reg x2  //LUI x2, imm
+    instr_input[2] = 32'b01101111_00100000_0111_00010_0110111; //Carrega 20 bits superiores do reg x2  //LUI x2, imm
+    instr_input[3] = 32'b0111_01101111_00010_000_00010_0010011; //Carrega 12 bits inferiores do reg x2 //ADDI x2, x2, imm
     /*************************************************/
     /* Carrega caracteres "'r', 'l', 'd', '!'" em x3 */
-    instr_input[4] = 32'b0100_00100001_00000_000_00011_0010011; //Carrega 12 bits inferiores do reg x3 //ADDI x3, x0, imm
-    instr_input[5] = 32'b01110010_01101100_0110_00011_0110111; //Carrega 20 bits superiores do reg x3  //LUI x3, imm
+    instr_input[4] = 32'b01110010_01101100_0110_00011_0110111; //Carrega 20 bits superiores do reg x3  //LUI x3, imm
+    instr_input[5] = 32'b0100_00100001_00011_000_00011_0010011; //Carrega 12 bits inferiores do reg x3 //ADDI x3, x3, imm
     /*************************************************/
     /* Carrega caracteres "'B', 'y', 'e', ','" em x4 */
-    instr_input[6] = 32'b0101_00100000_00000_000_00100_0010011; //Carrega 12 bits inferiores do reg x4 //ADDI x4, x0, imm
-    instr_input[7] = 32'b01000010_01111001_0110_00100_0110111; //Carrega 20 bits superiores do reg x4  //LUI x4, imm
+    instr_input[6] = 32'b01000010_01111001_0110_00100_0110111; //Carrega 20 bits superiores do reg x4  //LUI x4, imm
+    instr_input[7] = 32'b0101_00100000_00100_000_00100_0010011; //Carrega 12 bits inferiores do reg x4 //ADDI x4, x4, imm
     /*************************************************/
     /* Carrega "Hello World!" e "Bye " na memória */
     instr_input[8] = 32'b0000000_00001_00000_010_00000_0100011; //Carrega x1 sem offset         //SW x1, 0(x0)
@@ -52,7 +52,7 @@ initial begin
     /*************************************/
     /* Carrega x5 e x6 com valor comparativo */
     instr_input[12] = 32'b000000000010_00000_000_00101_0010011; //ADDI x5, x0, 2
-    instr_input[13] = 32'b000000000110_00000_000_00110_0010011; //ADDI x6, x0, 6
+    instr_input[13] = 32'b000000000010_00000_000_00110_0010011; //ADDI x6, x0, 6
     /*****************************************/
     /* Se valores de x5 e x6 forem iguais, pula para instrução do Hello World! */
     instr_input[14] = 32'b0000000_00110_00101_000_10100_1100011; //BEQ x5, x6, 20

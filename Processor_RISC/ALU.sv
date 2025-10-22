@@ -41,6 +41,8 @@ always @(*) begin
             out = (in1 == in2) ? 32'd1 : 32'd0;
         SGTE:
             out = (signed_in1 >= signed_in2) ? 32'd1 : 32'd0;
+        NEQ:
+            out = (in1 != in2) ? 32'd1 : 32'd0;
 
         default:
             out = 32'd0;

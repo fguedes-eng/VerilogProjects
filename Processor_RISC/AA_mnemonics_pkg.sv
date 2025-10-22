@@ -27,6 +27,7 @@
         parameter UGTE = 4'b1010;
         parameter EQ   = 4'b1011;
         parameter SGTE = 4'b1100;
+        parameter NEQ  = 4'b1101;
         parameter DEFAULT = 4'b1111;
 
     endpackage

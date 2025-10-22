@@ -36,12 +36,10 @@ module Multiplexers (
 logic [31:0] pc_plus4;
 logic [31:0] pc_plusImm;
 logic [31:0] wb_plus4;
-logic [31:0] pc_alu_plusPC;
 
 assign pc_plus4 = pc_pc + (1 << 2);
 assign wb_plus4 = wb_pc + (1 << 2);
 assign pc_plusImm = pc_pc + pc_imm;
-assign pc_alu_plusPC = pc_alu + pc_pc;
 
 always @(*) begin : WB_mux
     case (WBSel)
@@ -79,7 +77,7 @@ always @(*) begin : PC_mux
         PC_PLUS4:
             pc_out = pc_plus4;
         PC_ALU:
-            pc_out = pc_alu_plusPC;
+            pc_out = pc_alu & ~1;
         PC_IMM:
             pc_out = pc_plusImm;
     endcase

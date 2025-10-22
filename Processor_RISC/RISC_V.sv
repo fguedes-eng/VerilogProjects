@@ -137,7 +137,6 @@ Registers registers (
     .ws(rd),        //registrador de destino vindo da instrução
     .wd(wb_in),
     .we(regWrite),
-    .wb_ctrl(WBSel),
     /* OUTPUTS */
     .rd1(rd1),      //read data 1
     .rd2(rd2),      //read data 2

@@ -183,7 +183,7 @@ always @(*) begin
                 end
             endcase
         end
-
+        //Rever JALR
         ItypeJALR: begin
             memWrite = 1'b0; //não escreve na memória
             regWrite = 1'b1; //escreve no reg
@@ -210,7 +210,7 @@ always @(*) begin
                 end
 
                 3'b001: begin //BNE
-                    ALUop = EQ;
+                    ALUop = NEQ;
                 end
 
                 3'b100: begin //BLT
