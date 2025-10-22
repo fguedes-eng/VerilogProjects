@@ -15,9 +15,8 @@ Se quiser compilar rapidamente no **VS Code**, basta usar as tasks configuradas 
 
 ### Passos:
 1. Certifique-se de ter o **Icarus Verilog** instalado.  
-2. Crie um arquivo chamado `logic_filelist.txt`.  
-3. Crie uma pasta chamada `out`.  
-4. Execute a task **"Compile Verilog Project"** no VS Code.
+2. Execute a task **"Compile Verilog Project"** no VS Code.
+3. O arquivo de script criará a pasta de saída `out` e o `logic_filelist.txt` para compilação e reprodução do código.
 
 ---
 
