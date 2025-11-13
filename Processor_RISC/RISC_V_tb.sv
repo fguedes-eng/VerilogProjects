@@ -77,3 +77,41 @@ initial begin
 end
 
 endmodule
+
+/*
+ FPU _> Floating Point Unit, ULA não faz
+ Precisão simples 32 bits
+ Precisão dupla 64 bits
+
+ 5 grupos:
+ Números normalizados
+ Números não normalizados
+ Zero
+ Infinito
+ Não números (NaN)
+
+ Sinal (S):
+ 1 bit
+
+ Expoente (E):
+ 8 bits simples, 11 bits dupla
+
+Bias (B):
+127 pra simples, 1023 pra dupla
+
+ Mantissa (F ou M):
+ 23 bits pra simples, 52 bits pra dupla
+
+ Valor = (-1)^S . (1.M) . 2^(E - B)
+
+ IEEE 754
+
+ Ex: 0x40490FDB
+
+ 0/1000_0000_0/100_1001_0000_1111_1101_1011
+ S = 0 (positivo)
+ E = 10000000 = 128
+ Expoente Real = 128 - 127 = 1
+ M = 10010010000111111011011
+ Valor = (-1)^0 x (1.10010010000111111011011).2^1 = 3.1415
+*/
