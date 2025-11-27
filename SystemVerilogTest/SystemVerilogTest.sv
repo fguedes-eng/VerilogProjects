@@ -181,8 +181,102 @@ local /**(private)**/, public, protected
     virtual function int func(); -> classe base pode implementar, classes derivadas podem sobrescrever
     pure virtual function int func(); -> obriga classe derivada a implementar
 
-interface inter(); //contém apenas métodos virtuais pure pra serem implementados, declarações de tipo de parâmetro
 
+/* CONTROLE DE TEMPO */
+wait (expression) -> espera expression ser true
+@ event_expression -> suspende a execução até que ocorra o evento
+@(expresssion)
+@(posedge expression)
+@(negedge expression)
+@(edge expression)
+
+repeat (expression) -> repete um número de vezes
+
+fork
+    ->comandos executam ao mesmo tempo. Bloco só termina quando último comando for concluído
+join
+
+/* CLOCKING BLOCKS */
+
+//Se faz necessário como regra de timing. Sem ele, pode haver problemas entre o tb e o DUT de race condition.
+//Ex: TB e DUT têm um always @(posedge clk) com o mesmo clock. Um tenta ler e o outro tenta escrever no mesmo tempo. Race condition.
+//inputs são inputs PARA O TB, não para o DUT, outputs idem
+clocking bus @(posedge clock1);
+    default input #10ns output #2ns;
+    input data, ready, enable = top.mem1.enable;
+    output negedge ack;
+    input #1step addr;
+endclocking
+
+//uso:
+##1 //um ciclo de clk
+bus.data <= drive;
+@(bus) //a cada ciclo de bus
+bus.ready <= n_sei_oq;
+bus.enable //criado como alias no lugar de bus.top.mem1.enable
+
+/* INTERFACES */
+Usado como um encapsulamento de vários ports pra modularizar e reduzir a declaração da lista de ports dos modulos
+
+interface simple_bus
+    logic req, gnt;
+    logic [7:0] addr, data;
+    logic [1:0] mode;
+    logic start, rdy;
+endinterface: simple_bus
+
+module memMod (simple_bus a, input logic clk);
+...
+a.req = ....
+a.addr = ...
+endmodule
+
+module top_tb();
+    logic clk = 0;
+    simple_bus sb_if(); //instancia a interface
+
+    memMod mem(sb_inf, clk); //instancia o DUT e coloca a interface nele
+endmodule
+
+modport serve pra informar direção de input ou output para módulos que vão utilizar uma mesma interface
+
+criam-se modports diferentes para cada módulo informando como aquele
+módulo vai enxergar os sinais da interface em relação a input/output
+
+Exemplo:
+interface i2;
+    wire a, b, c, d;
+    modport master (input a, b, output c, d); //master enxerga a b como input e c d como output
+    modport slave (output a, b, input c, d); //slave enxerga a b como output e c d como input
 endinterface
+
+isso serve pra ferramenta poder verificar se o sinal chegando da interface é input ou output
+
+modport expressions servem pra permitir ao modport criar um elemento personalizado com .nome(expressao_personalizada)
+
+Exemplo:
+
+interface i
+    logic [7:0] r;
+    const int x = 1;
+    bit R;
+    modport A (output .P(r[3:0]), input .Q(x), R);
+    modport B (output .P(r[7:4]), input .Q(2), R);
+endinterface
+
+module M (interface i);
+    initial i.P = i.Q; //se for um modport A, r[3:0] = 1'b1, se for B, r[7:4] = 2'b10
+endmodule
+
+module top;
+    I i1 (); //instancia interface
+    M u1 (i1.A); //instancia DUT M que recebe interface com modport A
+    //i1.r[3:0] = 1'b1, logo i1.r = xxxx_0001
+    M u2 (i1.B); //instancia DUT M que recebe interface com modport B
+    //i1.r[7:4] = 1'b10, logo i1.r = 0010_xxxx
+    initial #1 $display("%b", i1.r) //i1.r = 0010_0001
+endmodule
+
+
 
 endmodule
