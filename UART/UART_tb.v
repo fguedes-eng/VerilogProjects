@@ -135,8 +135,8 @@ initial begin
     #WAIT_TX;
     //2º - Casos de borda
     //1º Caso de borda - 0x00:
-    rst = 1'b0;             
-    In_rdy = 0;    
+    rst = 1'b0;
+    In_rdy = 0;
     parity_sel = 1'b1;         
     Data_In = 8'h00;        #2;
     In_rdy = 1;

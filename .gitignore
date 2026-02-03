@@ -5,3 +5,5 @@ yosys uart command.txt
 logic_filelist.txt
 
 /*/synth
+
+/SystemVerilogTest
