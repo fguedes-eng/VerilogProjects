@@ -99,7 +99,7 @@ always @(posedge clk or posedge rst) begin
         for (i = 0; i < 1023; i = i + 1) begin
             mem_cell[i] <= 8'd0;
         end
-    end 
+    end
     else if (we) begin
         case (read_size)
             MEM_BYTE_SIGNED, MEM_BYTE_UNSIGNED:

@@ -1,0 +1,88 @@
+00000000000000012404[]
+
+[{"title": "   ", "lazy": true, "folder": true}][{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Verification Metrics","All Average Grd":"82.22%","All Cov":"3560 / 4498 (79.15%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Types","All Average Grd":"83.25%","All Cov":"1780 / 2249 (79.15%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"uvm_pkg","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ALUInstr","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"InstrTypes","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Instructions","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"riscv_uvm_pkg","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"riscv_coverage::riscv_cg","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_opcode","All Average Grd":"88.89%","All Cov":"8 / 9 (88.89%)","Assertion Status Grd":"n/a","bins_json":"bin0.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_funct3","All Average Grd":"100%","All Cov":"8 / 8 (100%)","Assertion Status Grd":"n/a","bins_json":"bin1.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_funct7","All Average Grd":"100%","All Cov":"2 / 2 (100%)","Assertion Status Grd":"n/a","bins_json":"bin2.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_rd","All Average Grd":"66.67%","All Cov":"2 / 3 (66.67%)","Assertion Status Grd":"n/a","bins_json":"bin3.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_regWrite","All Average Grd":"100%","All Cov":"2 / 2 (100%)","Assertion Status Grd":"n/a","bins_json":"bin4.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_memWrite","All Average Grd":"50%","All Cov":"1 / 2 (50%)","Assertion Status Grd":"n/a","bins_json":"bin5.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cx_op_f3","All Average Grd":"51.39%","All Cov":"37 / 72 (51.39%)","Assertion Status Grd":"n/a","columns":"cp_opcode;cp_funct3","bins_json":"bin6.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cx_rw_op","All Average Grd":"44.44%","All Cov":"8 / 18 (44.44%)","Assertion Status Grd":"n/a","columns":"cp_regWrite;cp_opcode","bins_json":"bin7.json"}
+]}
+]}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"$unit","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"tb_uvm_top","All Average Grd":"100%","All Cov":"6 / 6 (100%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"riscv_if","All Average Grd":"78.83%","All Cov":"108 / 137 (78.83%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"RISC_V","All Average Grd":"82.28%","All Cov":"441 / 536 (82.28%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ALU","All Average Grd":"100%","All Cov":"180 / 180 (100%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Control_unit","All Average Grd":"77.79%","All Cov":"94 / 119 (78.99%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Data_memory","All Average Grd":"51.58%","All Cov":"54 / 99 (54.55%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Instruction_decoder","All Average Grd":"91.67%","All Cov":"99 / 104 (95.19%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Instruction_memory","All Average Grd":"85.71%","All Cov":"36 / 42 (85.71%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Multiplexers","All Average Grd":"86.08%","All Cov":"439 / 601 (73.04%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Program_Counter","All Average Grd":"80.3%","All Cov":"43 / 69 (62.32%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Registers","All Average Grd":"88.89%","All Cov":"122 / 123 (99.19%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"riscv_assertions","All Average Grd":"83.93%","All Cov":"90 / 117 (76.92%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_pc_sane","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_alu_no_x","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_no_write_x0","All Average Grd":"0%","All Cov":"0 / 1 (0%)","Assertion Status Grd":"0%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_pc_plus4","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_pc_aligned","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+]}
+]}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Instances","All Average Grd":"81.2%","All Cov":"1780 / 2249 (79.15%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"uvm_pkg","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"uvm_test_top","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"env","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"coverage","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"riscv_cg","All Average Grd":"75.17%","All Cov":"68 / 116 (58.62%)","Assertion Status Grd":"n/a","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_opcode","All Average Grd":"88.89%","All Cov":"8 / 9 (88.89%)","Assertion Status Grd":"n/a","bins_json":"bin8.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_funct3","All Average Grd":"100%","All Cov":"8 / 8 (100%)","Assertion Status Grd":"n/a","bins_json":"bin9.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_funct7","All Average Grd":"100%","All Cov":"2 / 2 (100%)","Assertion Status Grd":"n/a","bins_json":"bin10.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_rd","All Average Grd":"66.67%","All Cov":"2 / 3 (66.67%)","Assertion Status Grd":"n/a","bins_json":"bin11.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_regWrite","All Average Grd":"100%","All Cov":"2 / 2 (100%)","Assertion Status Grd":"n/a","bins_json":"bin12.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cp_memWrite","All Average Grd":"50%","All Cov":"1 / 2 (50%)","Assertion Status Grd":"n/a","bins_json":"bin13.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cx_op_f3","All Average Grd":"51.39%","All Cov":"37 / 72 (51.39%)","Assertion Status Grd":"n/a","columns":"cp_opcode;cp_funct3","bins_json":"bin14.json"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"cx_rw_op","All Average Grd":"44.44%","All Cov":"8 / 18 (44.44%)","Assertion Status Grd":"n/a","columns":"cp_regWrite;cp_opcode","bins_json":"bin15.json"}
+]}
+]}
+]}
+]}
+]}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ALUInstr","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"InstrTypes","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"Instructions","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"riscv_uvm_pkg","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"$unit","All Average Grd":"n/a","All Cov":"0 / 0 (n/a)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"tb_uvm_top","All Average Grd":"87.22%","All Cov":"1712 / 2133 (80.26%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"vif","All Average Grd":"78.83%","All Cov":"108 / 137 (78.83%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"dut","All Average Grd":"82.82%","All Cov":"1598 / 1990 (80.3%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"alu","All Average Grd":"100%","All Cov":"180 / 180 (100%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"control_unit","All Average Grd":"77.79%","All Cov":"94 / 119 (78.99%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"data_memory","All Average Grd":"51.58%","All Cov":"54 / 99 (54.55%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"instruction_decoder","All Average Grd":"91.67%","All Cov":"99 / 104 (95.19%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"instruction_memory","All Average Grd":"85.71%","All Cov":"36 / 42 (85.71%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"multiplexers","All Average Grd":"86.08%","All Cov":"439 / 601 (73.04%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"program_counter","All Average Grd":"80.3%","All Cov":"43 / 69 (62.32%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"registers","All Average Grd":"88.89%","All Cov":"122 / 123 (99.19%)","Assertion Status Grd":"n/a"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"u_assertions","All Average Grd":"83.93%","All Cov":"90 / 117 (76.92%)","Assertion Status Grd":"80%","children"
+:[{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_pc_sane","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_alu_no_x","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_no_write_x0","All Average Grd":"0%","All Cov":"0 / 1 (0%)","Assertion Status Grd":"0%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_pc_plus4","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+,{"expanded":false,"Exclusion Rule Type":"None","UNR":"none","title":"ap_pc_aligned","All Average Grd":"100%","All Cov":"1 / 1 (100%)","Assertion Status Grd":"100%"}
+]}
+]}
+]}
+]}
+]}
+]
+{"resources/report/lazy.json":{"start":23,"end":72},"resources/report/empty.json":{"start":20,"end":23},"tree.json":{"start":72,"end":12404}}

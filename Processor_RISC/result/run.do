@@ -1,0 +1,2 @@
+run
+coverage -dump out

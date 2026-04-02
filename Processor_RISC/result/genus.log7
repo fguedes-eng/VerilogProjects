@@ -1,0 +1,199 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[19:25:59.360441] Configured Lic search path (22.01-s003): 5280@192.168.2.250
+
+Version: 22.16-s078_1, built Mon Jun 10 10:32:57 PDT 2024
+Options: 
+Date:    Wed Mar 18 19:25:59 2026
+Host:    saitama (x86_64 w/Linux 4.18.0-553.el8_10.x86_64) (1core*36cpus*71physical cpus*INTEL(R) XEON(R) GOLD 6542Y 61440KB) (428744744KB)
+PID:     2310095
+OS:      Red Hat Enterprise Linux Server release 7.9 (Maipo)
+
+Checking out license: Genus_Synthesis
+[19:25:59.521129] Periodic Lic check successful
+[19:25:59.521138] Feature usage summary:
+[19:25:59.521139] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (8 seconds elapsed).
+
+WARNING: This version of the tool is 646 days old.
+@genus:root: 1> source genus_script.tcl
+Sourcing './genus_script.tcl' (Wed Mar 18 19:26:14 -03 2026)...
+#@ Begin verbose source ./genus_script.tcl
+@file(genus_script.tcl) 2: set USER aluno22 ;# put here YOUR user name at this machine
+@file(genus_script.tcl) 3: set PROJECT_DIR /prj/ci/workarea/${USER}/CI_Digital/RISCV/rtl
+@file(genus_script.tcl) 4: set TECH_DIR /pdk/gpdk045 ;# technology dependent
+@file(genus_script.tcl) 5: set HDL_NAME "RISCV"
+@file(genus_script.tcl) 9: set HDL_FILES {AA_mnemonics_pkg.sv ALU.sv Control_unit.sv Data_memory.sv Instruction_decoder.sv Instruction_memory.sv Multiplexers.sv Program_Counter.sv Registers.sv RISCV.sv}
+@file(genus_script.tcl) 11: set LIB_DIR ${TECH_DIR}/gsclib045_svt_v4.7/gsclib045/timing
+@file(genus_script.tcl) 14: set WORST_LIST {slow_vdd1v0_basicCells.lib} 
+@file(genus_script.tcl) 15: set BEST_LIST {fast_vdd1v2_basicCells.lib} 
+@file(genus_script.tcl) 16: set LEF_LIST {gsclib045_tech.lef gsclib045_macro.lef}
+@file(genus_script.tcl) 18: set_db init_hdl_search_path "${PROJECT_DIR}"
+  Setting attribute of root '/': 'init_hdl_search_path' = /prj/ci/workarea/aluno22/CI_Digital/RISCV/rtl
+@file(genus_script.tcl) 21: set_db hdl_search_path "${PROJECT_DIR}"
+Warning : This attribute will be obsolete in a next major release. [TUI-32]
+        : attribute: 'hdl_search_path', object type: 'root'
+        : Attribute 'hdl_search_path' is going to be obsoleted, use the new attribute 'init_hdl_search_path'.
+  Setting attribute of root '/': 'hdl_search_path' = /prj/ci/workarea/aluno22/CI_Digital/RISCV/rtl
+@file(genus_script.tcl) 24: set_db lib_search_path "${LIB_DIR}"
+  Setting attribute of root '/': 'lib_search_path' = /pdk/gpdk045/gsclib045_svt_v4.7/gsclib045/timing
+@file(genus_script.tcl) 26: set_db library "${BEST_LIST}"
+
+  Message Summary for Library fast_vdd1v2_basicCells.lib:
+  *******************************************************
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  *******************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.320000, 0.000000) in library 'fast_vdd1v2_basicCells.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP10' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP5' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP5' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP7' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP7' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP9' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'DECAP9' must have an output pin.
+  Setting attribute of root '/': 'library' = fast_vdd1v2_basicCells.lib
+@file(genus_script.tcl) 28: read_hdl ${HDL_FILES}
+    package InstrTypes;
+                     |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './AA_mnemonics_pkg.sv' on line 1, column 22.
+        : Invalid Verilog syntax is parsed, or unsupported Verilog syntax is encountered.
+        parameter Rtype        = 7'b0110011;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 3, column 32.
+        : The design must be read in with 'read_hdl -sv'.
+        parameter ItypeImm     = 7'b0010011;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 4, column 32.
+        parameter ItypeLd      = 7'b0000011;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 5, column 32.
+        parameter ItypeJALR    = 7'b1100111;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 6, column 32.
+        parameter Stype        = 7'b0100011;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 7, column 32.
+        parameter Btype        = 7'b1100011;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 8, column 32.
+        parameter UtypeLUI     = 7'b0110111;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 9, column 32.
+        parameter UtypeAUIPC   = 7'b0010111;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 10, column 32.
+        parameter Jtype        = 7'b1101111;
+                               |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 11, column 32.
+    package ALUInstr;
+          |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './AA_mnemonics_pkg.sv' on line 15, column 11.
+        parameter ADD  = 4'b0000;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 17, column 24.
+        parameter SUB  = 4'b0001;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 18, column 24.
+        parameter SLL  = 4'b0010;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 19, column 24.
+        parameter SRL  = 4'b0011;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 20, column 24.
+        parameter SRA  = 4'b0100;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 21, column 24.
+        parameter OR   = 4'b0101;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 22, column 24.
+        parameter AND  = 4'b0110;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 23, column 24.
+        parameter XOR  = 4'b0111;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 24, column 24.
+        parameter SLT  = 4'b1000;
+                       |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './AA_mnemonics_pkg.sv' on line 25, column 24.
+        parameter SLT  = 4'b1000;
+                       |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './AA_mnemonics_pkg.sv' on line 25, column 24.
+#@ End verbose source ./genus_script.tcl
+1
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 265s, ST: 10s, FG: 10s, CPU: 1.8%}, MEM {curr: 1.4G, peak: 1.5G, phys curr: 0.5G, phys peak: 0.5G}, SYS {load: 0.2, cpu: 36, total: 408.9G, free: 327.7G}
+Abnormal exit.
+Encountered a problem while exiting.

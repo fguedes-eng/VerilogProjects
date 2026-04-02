@@ -1,0 +1,7 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(16Mar2026:20:34:52):( xrun -sv -uvm -access +rwc testbench.sv -coverage all -covoverwrite )
+s2::(16Mar2026:20:36:48):( xrun -sv -uvm -uvmhome CDNS-1.2 -access +rwc testbench.sv -coverage all -covoverwrite )
+s3::(16Mar2026:20:38:27):( xrun -sv -uvm -uvmhome CDNS-1.2 -access +rwc testbench.sv -coverage all -covoverwrite )

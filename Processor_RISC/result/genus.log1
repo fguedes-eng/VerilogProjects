@@ -1,0 +1,105 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[19:13:50.360345] Configured Lic search path (22.01-s003): 5280@192.168.2.250
+
+Version: 22.16-s078_1, built Mon Jun 10 10:32:57 PDT 2024
+Options: 
+Date:    Wed Mar 18 19:13:50 2026
+Host:    saitama (x86_64 w/Linux 4.18.0-553.el8_10.x86_64) (1core*36cpus*71physical cpus*INTEL(R) XEON(R) GOLD 6542Y 61440KB) (428744744KB)
+PID:     2308217
+OS:      Red Hat Enterprise Linux Server release 7.9 (Maipo)
+
+Checking out license: Genus_Synthesis
+[19:13:50.062057] Periodic Lic check successful
+[19:13:50.062066] Feature usage summary:
+[19:13:50.062067] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (0 seconds elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (8 seconds elapsed).
+
+WARNING: This version of the tool is 646 days old.
+@genus:root: 1> source genus_script
+Sourcing './genus_script' (Wed Mar 18 19:14:02 -03 2026)...
+#@ Begin verbose source ./genus_script
+@file(genus_script) 2: set USER professor ;# put here YOUR user name at this machine
+@file(genus_script) 3: set PROJECT_DIR /prj/ci/workarea/${USER}/CI_Digital/RISCV/rtl
+@file(genus_script) 4: set TECH_DIR /pdk/gpdk045 ;# technology dependent
+@file(genus_script) 5: set HDL_NAME "RISCV"
+#@ End verbose source ./genus_script
+Error   : File ended with an incomplete command. [TUI-520] [source]
+        : The file is: ./genus_script.
+        : Check if the command has unmatched braces.
+        : The command is: set HDL_FILES {${PROJECT_DIR}/RISCV.sv ${PROJECT_DIR}/AA_mnemonics_pkg.sv ${PROJECT_DIR}/ALU.sv ${PROJECT_DIR}/Control_unit.sv ${PROJECT_DIR}/Data_memory.sv ${PROJECT_DIR}/Instruction_decoder.sv ${PROJECT_DIR}/Instruction_memory.sv ${PROJECT_DIR}/Multiplexers.sv ${PROJECT_DIR}/Program_Counter.sv ${PROJECT_DIR}/Registers.sv
+
+set LIB_DIR ${TECH_DIR}/gsclib045_svt_v4.7/gsclib045/timing
+#set LEF_DIR ${TECH_DIR}/gsclib045_svt_v4.7/gsclib045/lef
+
+set WORST_LIST {slow_vdd1v0_basicCells.lib} 
+set BEST_LIST {fast_vdd1v2_basicCells.lib} 
+set LEF_LIST {gsclib045_tech.lef gsclib045_macro.lef}
+
+
+#Set the search paths to the libraries and the HDL files
+set_db hdl_search_path "${PROJECT_DIR}"
+
+#set_db lib_search_path "${LIB_DIR} ${LEF_DIR}"
+set_db lib_search_path "${LIB_DIR}"
+
+set_db library "${BEST_LIST}"
+
+read_hdl ${HDL_FILES}
+
+elaborate ${HDL_NAME}
+
+set_top_module ${HDL_NAME}
+
+check_design -unresolved ${HDL_NAME}
+
+read_sdc ${PROJECT_DIR}/constraint.sdc
+
+syn_generic ${HDL_NAME}
+
+syn_map ${HDL_NAME} 
+
+report_timing > ${PROJECT_DIR}/${HDL_NAME}_timing.rpt
+
+write_hdl ${HDL_NAME} > ${PROJECT_DIR}/${HDL_NAME}.v
+
+write_sdc > ${PROJECT_DIR}/timing_design.sdc
+
+write_sdf > ${PROJECT_DIR}/timing_design.sdf
+
+report power  > ${REPORTS_PATH}${DESIGN}_power.rpt
+report timing -lint > ${REPORTS_PATH}${DESIGN}_time.rpt
+report timing > ${REPORTS_PATH}${DESIGN}_slack.rpt
+report area > ${REPORTS_PATH}${DESIGN}_area.rpt
+report gates > ${REPORTS_PATH}${DESIGN}_gater.rpt
+report qor > ${REPORTS_PATH}${DESIGN}_qor.rpt
+report messages > ${REPORTS_PATH}${DESIGN}_messages.rpt
+report summary > ${REPORTS_PATH}${DESIGN}_summary.rpt
+report_multibit_inferencing > ${REPORTS_PATH}${DESIGN}_multibit.rpt
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 31s, ST: 8s, FG: 8s, CPU: 1.8%}, MEM {curr: 1.2G, peak: 1.2G, phys curr: 0.4G, phys peak: 0.4G}, SYS {load: 0.2, cpu: 36, total: 408.9G, free: 327.9G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 37s, ST: 8s, FG: 8s, CPU: 1.8%}, MEM {curr: 1.2G, peak: 1.2G, phys curr: 0.4G, phys peak: 0.4G}, SYS {load: 0.2, cpu: 36, total: 408.9G, free: 327.9G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 38s, ST: 8s, FG: 8s, CPU: 1.8%}, MEM {curr: 1.2G, peak: 1.2G, phys curr: 0.4G, phys peak: 0.4G}, SYS {load: 0.2, cpu: 36, total: 408.9G, free: 327.9G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 39s, ST: 8s, FG: 8s, CPU: 1.8%}, MEM {curr: 1.2G, peak: 1.2G, phys curr: 0.4G, phys peak: 0.4G}, SYS {load: 0.2, cpu: 36, total: 408.9G, free: 327.9G}
+Abnormal exit.
+Encountered a problem while exiting.

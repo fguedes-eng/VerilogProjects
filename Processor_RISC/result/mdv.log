@@ -1,0 +1,15 @@
+20:12:52:0487 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 46377
+[INFO ] 2026-03-16 23:13:21 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 37101
+[ERROR] 2026-03-16 23:13:44 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool-1] - Error loading database file /prj/ci/workarea/aluno22/verilog/result/cov_work/scope/icc_28af8eef_4dc508cd.ucm:
+Serialization exception encountered in reading database. 
+There may be following possible reasons for the same. Please verify and correct it.
+- Version of Xcelium being used with analysis tool is older than the version used to generate coverage database.
+  Please double check version used for the simulation and reload with that xcelium version set.
+- Database corrupted or modified externally..
+[ERROR] 2026-03-16 23:13:44 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool-2] - Valid data file not found for run directory /prj/ci/workarea/aluno22/verilog/result/cov_work/scope/out. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+[INFO ] 2026-03-16 23:14:29 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 46653
+[INFO ] 2026-03-16 23:28:08 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 44349
+[INFO ] 2026-03-16 23:30:40 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 40311
+[INFO ] 2026-03-16 23:31:29 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 37145
+[INFO ] 2026-03-16 23:35:07 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 33263
+[INFO ] 2026-03-16 23:38:44 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 34423

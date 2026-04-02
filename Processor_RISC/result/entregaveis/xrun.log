@@ -1,0 +1,180 @@
+xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s013: Started on Mar 16, 2026 at 20:38:27 -03
+xrun
+	-sv
+	-uvm
+	-uvmhome CDNS-1.2
+	-access +rwc
+	testbench.sv
+	-coverage all
+	-covoverwrite
+Recompiling... reason: file './riscv_uvm_pkg.sv' is newer than expected.
+	expected: Mon Mar 16 20:30:24 2026
+	actual:   Mon Mar 16 20:38:15 2026
+Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2
+file: testbench.sv
+	package worklib.riscv_uvm_pkg:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		uvm_pkg
+		cdns_uvmapi
+		cdns_assert2uvm_pkg
+		cdns_uvm_pkg
+		ALUInstr
+		InstrTypes
+		Instructions
+		riscv_uvm_pkg
+		$unit_0x4ccdf83b
+		tb_uvm_top
+		Caching library 'worklib' ....... Done
+
+	Extracting FSMs for coverage:
+		worklib.ALU
+		worklib.Control_unit
+		worklib.Data_memory
+		worklib.Instruction_decoder
+		worklib.Instruction_memory
+		worklib.Multiplexers
+		worklib.Program_Counter
+		worklib.Registers
+		worklib.riscv_assertions
+		worklib.RISC_V
+		worklib.tb_uvm_top
+	Total FSMs extracted = 0
+	Building instance overlay tables: .................... Done
+	Enabling instrumentation for coverage types: block expression FSM toggle functional
+xmelab: *W,COVDCL: By default expression coverage is scored only for Verilog logical operators (|| and &&) and VHDL logical operators (OR, AND, NOR, and NAND), and is scored only in condition expressions. To score coverage for other operators and for expressions in other statements, use the "set_expr_coverable_operators" and "set_expr_coverable_statements" coverage configuration file commands with suitable options at elaboration.
+	Generating native compiled code:
+		worklib.riscv_assertions:sv <0x23a85d6f>
+			streams:  28, words: 27920
+		worklib.Registers:sv <0x45aecce9>
+			streams:   5, words:  2904
+		worklib.Program_Counter:sv <0x05595ae0>
+			streams:   2, words:   687
+		worklib.Multiplexers:sv <0x745f5c82>
+			streams:   7, words:  5697
+		worklib.Instruction_memory:sv <0x1d11466f>
+			streams:   2, words:   871
+		worklib.Instruction_decoder:sv <0x410d0599>
+			streams:   2, words: 11761
+		worklib.Data_memory:sv <0x22986bdc>
+			streams:   6, words:  7700
+		worklib.Control_unit:sv <0x105b36db>
+			streams:   1, words: 39069
+		worklib.ALU:sv <0x6913f655>
+			streams:   3, words:  7331
+		worklib.RISC_V:sv <0x477421e1>
+			streams:  64, words: 21526
+		worklib.riscv_if:sv <0x6961b643>
+			streams: 724, words: 872694
+logic [31:0] reg_cell [0:31];
+                    |
+xmelab: *W,COVMDD (./Registers.sv,13|20): Toggle coverage for bit, logic, reg, wire, enum and struct multi-dimensional static arrays and vectors is not supported by default. To enable toggle coverage for enum multi-dimensional static arrays specify 'set_toggle_scoring -sv_enum enable_mda' and for other multi-dimensional static arrays, specify 'set_toggle_scoring -sv_mda [<max_bit_base2_exponent>] [-sv_mda_of_struct]' ccf command in the coverage configuration file.
+    int unsigned cycles_after_rst;
+                                |
+xmelab: *W,COVUTA (./riscv_assertions.sv,22|32): Toggle coverage is not supported for SystemVerilog integer, real, string, dynamic array, sparse memory and reference ports. It is also not supported for VHDL multi-dimensional array and array of record. There may also be other such objects in the design.
+	Building instance specific data structures.
+xmelab: *W,CGPIDF: Covergroup "per_instance" option , by default, is set as 0.
+xmelab: *N,COVCGN: Coverage configuration file command "set_covergroup -new_instance_reporting" can be specified to improve the scoping and naming of covergroup instances. It may be noted that subsequent merging of a coverage database saved with this command and a coverage database saved without this command is not allowed.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                       Instances  Unique
+		Modules:                      11      11
+		Interfaces:                    1       1
+		Verilog packages:              8       8
+		Registers:                 16746   11858
+		Scalar wires:                 23       -
+		Vectored wires:              101       -
+		Named events:                  9      17
+		Always blocks:                47      47
+		Initial blocks:              341     177
+		Parallel blocks:              27      28
+		Cont. assignments:            18      18
+		Pseudo assignments:           67       -
+		Assertions:                    8       8
+		Covergroup Instances:          0       1
+		Compilation units:             1       1
+		SV Class declarations:       233     349
+		SV Class specializations:    448     448
+		Process Clocks:                9       3
+		Simulation timescale:        1ps
+	Writing initial simulation snapshot: worklib.tb_uvm_top:sv
+Loading snapshot worklib.tb_uvm_top:sv .................... Done
+SVSEED default: 1
+xcelium> source /tools/cadence/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> source /tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2/additions/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+UVM_INFO /tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh(412) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+CDNS-UVM-1.2 (23.09-s013)
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test riscv_test...
+SDI/Verilog Transaction Recording Facility Version 23.09-s013
+UVM_ERROR riscv_uvm_pkg.sv(536) @ 7616000: uvm_test_top.env.scoreboard [SB_MISMATCH] MISMATCH x23: pc=2c | SRA x23,x18(=2b7ff040),x29(=0) | esp=0x2b7ff040 obt=0x2b7ff04 | delta=0x29c80f44
+UVM_ERROR riscv_uvm_pkg.sv(536) @ 7746000: uvm_test_top.env.scoreboard [SB_MISMATCH] MISMATCH x23: pc=2c | SRA x23,x18(=2b7ff040),x29(=0) | esp=0x2b7ff040 obt=0x2b7ff04 | delta=0x29c80f44
+UVM_INFO /tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 8295000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO riscv_uvm_pkg.sv(625) @ 8295000: uvm_test_top.env.scoreboard [SCOREBOARD] Total checks: 257 | Errors: 2
+UVM_ERROR riscv_uvm_pkg.sv(630) @ 8295000: uvm_test_top.env.scoreboard [SCOREBOARD] *** 2 ERROS DETECTADOS ***
+UVM_INFO /tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 8295000: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(847) @ 8295000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    5
+UVM_WARNING :    0
+UVM_ERROR :    3
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[SB_MISMATCH]     2
+[SCOREBOARD]     2
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+
+Simulation complete via $finish(1) at time 8295 NS + 69
+/tools/cadence/XCELIUM2309/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh:543     $finish;
+xcelium> exit
+xmsim: *N,COVCGN: Coverage configuration file command "set_covergroup -new_instance_reporting" can be specified to improve the scoping and naming of covergroup instances. It may be noted that subsequent merging of a coverage database saved with this command and a coverage database saved without this command is not allowed.
+xmsim: *W,CGDEFN: Default name "worklib.uvm_pkg::.riscv_cg" will be generated for covergroup instance "riscv_cg" as the name of the covergroup instance is not specified explicitly: ./riscv_uvm_pkg.sv, 654.
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  tb_uvm_top(tb_uvm_top)
+  scope    :  scope
+  testname :  test
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_28af8eef_54bd8786.ucm
+  data               :  ./cov_work/scope/test/icc_28af8eef_54bd8786.ucd
+TOOL:	xrun(64)	23.09-s013: Exiting on Mar 16, 2026 at 20:38:29 -03  (total: 00:00:02)

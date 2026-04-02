@@ -1,0 +1,14 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-sv
+-uvm
+-uvmhome
+CDNS-1.2
+-access
++rwc
+testbench.sv
+-coverage
+all
+-covoverwrite
